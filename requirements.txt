@@ -11,3 +11,4 @@ motor
 pydantic[email]
 email-validator
 authlib
+httpx
