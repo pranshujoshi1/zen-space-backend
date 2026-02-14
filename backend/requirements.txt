@@ -12,3 +12,4 @@ pydantic[email]
 email-validator
 authlib
 httpx
+PyJWT
