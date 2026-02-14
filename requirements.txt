@@ -6,3 +6,5 @@ python-dotenv
 sqlalchemy
 passlib[bcrypt]
 python-jose[cryptography]
+beanie
+motor
