@@ -10,3 +10,4 @@ beanie
 motor
 pydantic[email]
 email-validator
+authlib
