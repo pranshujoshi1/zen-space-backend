@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Logo glow utility for subtle gradient aura */
+.zen-logo-glow {
+  box-shadow: 0 0 0 0 rgba(0,0,0,0);
+}
+
+
+html, body, #root {
+  height: 100%;
+}
+
+/* Use Poppins for a clean look */
+:root {
+  --zen-font: 'Poppins', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+body { font-family: var(--zen-font); }
+
+/* Base colors in dark mode to improve contrast */
+@layer base {
+  .dark {
+    --tw-prose-body: theme(colors.slate.200);
+  }
+}
+
+/* Splash background gradient and subtle texture */
+@layer utilities {
+  .zen-gradient {
+    /* Very light base: blue → white with subtle pastel accents */
+    background:
+      radial-gradient(1200px 600px at 10% 20%, rgba(167, 139, 250, 0.18), transparent 55%),
+      radial-gradient(1000px 500px at 90% 30%, rgba(56, 189, 248, 0.18), transparent 55%),
+      radial-gradient(900px 450px at 30% 80%, rgba(74, 222, 128, 0.16), transparent 60%),
+      linear-gradient(180deg, rgba(234, 246, 255, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%);
+  }
+
+  /* Dark theme variant for the app background */
+  .dark .zen-gradient {
+    background:
+      radial-gradient(1200px 600px at 10% 20%, rgba(139, 92, 246, 0.18), transparent 55%),
+      radial-gradient(1000px 500px at 90% 30%, rgba(56, 189, 248, 0.14), transparent 55%),
+      radial-gradient(900px 450px at 30% 80%, rgba(34, 197, 94, 0.12), transparent 60%),
+      linear-gradient(180deg, rgba(15, 23, 42, 0.98) 0%, rgba(2, 6, 23, 1) 100%);
+  }
+
+  /* Slow animated gradient drift */
+  .zen-gradient-animate {
+    background-size: 200% 200%;
+    animation: zen-gradient-drift 30s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .zen-float { animation: none; }
+    .zen-gradient-animate { animation: none; }
+    .zen-pulse { animation: none; }
+  }
+
+  /* Floating animation for decorative orbs */
+  .zen-float { animation: zen-float 16s ease-in-out infinite; }
+  .zen-float-slow { animation: zen-float 20s ease-in-out infinite; }
+  .zen-float-fast { animation: zen-float 12s ease-in-out infinite; }
+
+  /* Subtle breathing/pulse for the logo ring */
+  .zen-pulse {
+    animation: zen-pulse 4s ease-in-out infinite;
+  }
+
+  /* Soft ambient glow utility */
+  .zen-glow {
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.25), 0 6px 16px rgba(16, 185, 129, 0.18);
+  }
+
+  /* Card surface helpers for dark mode */
+  .zen-card {
+    @apply bg-white/60 dark:bg-white/5 dark:border-white/10 dark:text-slate-200;
+  }
+
+  /* Primary CTA pill button style: purple → green gradient */
+  .btn-zen {
+    @apply bg-gradient-to-r from-purple-600 to-green-500 text-white px-10 py-6 rounded-full font-semibold shadow-lg transition-all duration-300;
+    box-shadow: 0 12px 24px rgba(124, 58, 237, 0.25), 0 6px 12px rgba(16, 185, 129, 0.18);
+  }
+
+  .btn-zen:hover {
+    @apply hover:from-purple-600/90 hover:to-green-500/90;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 0 0 6px rgba(167, 139, 250, 0.25), 0 24px 44px rgba(124, 58, 237, 0.35), 0 12px 22px rgba(16, 185, 129, 0.25);
+  }
+
+  .btn-zen:active {
+    transform: translateY(0) scale(0.99);
+  }
+}
+
+/* Slider thumb gradient border glow on hover/active using outline */
+[data-slot="slider-thumb"]:hover,
+[data-slot="slider-thumb"]:focus-visible {
+  box-shadow: 0 0 0 6px rgba(164, 140, 251, 0.18), 0 0 0 10px rgba(133, 246, 162, 0.12), 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes zen-float {
+  0% { transform: translateY(0px) translateX(0px); }
+  25% { transform: translateY(-10px) translateX(6px); }
+  50% { transform: translateY(0px) translateX(0px); }
+  75% { transform: translateY(10px) translateX(-6px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+@keyframes zen-gradient-drift {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 0%; }
+}
+
+@keyframes zen-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.25); }
+  50% { box-shadow: 0 0 0 16px rgba(99, 102, 241, 0.0); }
+}
+
+
